@@ -1,22 +1,26 @@
 name: Push-to-EC2
-
+&nbsp;
+&nbsp;
 
 on:
   push:
     branches:
       - main
-
+&nbsp;
+&nbsp;
 
 jobs:
   deploy:
     name: Deploy to EC2 on main branch push
     runs-on: ubuntu-latest
-
+&nbsp;
+&nbsp;
 
     steps:
       - name: Checkout the files
         uses: actions/checkout@v2
-
+&nbsp;
+&nbsp;
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
@@ -25,7 +29,8 @@ jobs:
           REMOTE_HOST: ${{ secrets.HOST_DNS }}
           REMOTE_USER: ${{ secrets.USERNAME }}
           TARGET: ${{ secrets.TARGET_DIR }}
-
+&nbsp;
+&nbsp;
 
       - name: Executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
@@ -40,3 +45,5 @@ jobs:
             sudo systemctl enable apache2
             cd /home
             sudo mv * /var/www/html
+&nbsp;
+&nbsp;
