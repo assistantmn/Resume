@@ -1,13 +1,11 @@
 name: Push-to-EC2
-&nbsp;
-&nbsp;
+
 
 on:
   push:
     branches:
       - main
-&nbsp;
-&nbsp;
+
 
 jobs:
   deploy:
