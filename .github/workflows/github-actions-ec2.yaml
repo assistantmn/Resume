@@ -13,14 +13,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Copy files to EC2 using SCP
+      - name: Copy files via SCP
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "."  # You can change this to the specific folder or files
-          target: ${{ secrets.TARGET_DIR }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
+          source: "dist/*"
+          target: "/var/www/app"
 
       - name: Run remote commands on EC2
         uses: appleboy/ssh-action@master
